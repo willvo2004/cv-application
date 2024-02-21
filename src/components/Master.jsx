@@ -1,22 +1,38 @@
 import { useState } from 'react';
 import FullEditor from './FullEditor';
 import FullName from './FullName';
+import AdditionalDetails from './AdditionalDetails';
 
 export default function Master() {
-    const [submitted, setSubmitted] = useState(false);
+    const [fullNameSubmitted, setFullNameSubmitted] = useState(false);
+    const [additionalDetailsSubmitted, setAdditionalDetailsSubmitted] = useState(false);
     const [fullName, setFullName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [email, setEmail] = useState('');
+    const [address, setAddress] = useState('');
 
-    const handleSubmit = (fullName) => {
-        setSubmitted(true);
+    const handleFullNameSubmit = (fullName) => {
+        setFullNameSubmitted(true);
         setFullName(fullName);
     };
 
+    const handleAdditionalDetailsSubmit = (phoneNumber, email, address) => {
+        setAdditionalDetailsSubmitted(true);
+        setPhoneNumber(phoneNumber);
+        setEmail(email);
+        setAddress(address);
+    }
+
     return (
         <div>
-            {!submitted ? (
-                <FullName onSubmit={handleSubmit} /> // change this later 
+            {!fullNameSubmitted ? (
+                <FullName onSubmit={handleFullNameSubmit} /> // change this later 
             ) : (
-                <FullEditor name={fullName}/>
+                fullNameSubmitted && !additionalDetailsSubmitted ? (
+                    <AdditionalDetails onSubmit={handleAdditionalDetailsSubmit} />
+                ) : (
+                    <FullEditor name={fullName} phoneNumber={phoneNumber} email={email} address={address} />
+                )
             )}
         </div>
     );

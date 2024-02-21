@@ -5,16 +5,30 @@
 }
 
 .input-container label {
+    display: flex;
     justify-content: start; /* Align label to the left */
     margin-bottom: 5px;
+    margin-top: 4px;
 }
 
 .input-container input {
     width: 100%;
+    height: 30px;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    font-family: 'Roboto', sans-serif;
 }
 
-.title, .accordian-content {
-    padding: 20px;
+.accordian-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.title {
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .accordian {
@@ -22,3 +36,8 @@
     background-color: black;
 }
 
+.accordian-content {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
