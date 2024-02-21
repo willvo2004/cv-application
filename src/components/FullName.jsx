@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function PersonalDetails({ onSubmit }) {
+export default function FullName({ onSubmit }) {
     const [fullName, setFullName] = useState('');
 
     const handleChange = (event) => {
