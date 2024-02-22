@@ -3,37 +3,19 @@ import '../styles/PersonalDetailAccordian.css';
 
 export default function PersonalDetailAccordion({ name, number, email, address, onChange}) {
     const [selected, setSelected] = useState(true);
-    const [fullName, setFullName] = useState(name);
-    const [phoneNumber, setPhoneNumber] = useState(number);
-    const [emailAddress, setEmailAddress] = useState(email);
-    const [homeAddress, setHomeAddress] = useState(address);
+    const [formData, setFormData] = useState({ fullName: name, phoneNumber: number, emailAddress: email, homeAddress: address });
 
     const toggleAccordion = () => {
         setSelected(!selected);
     };
 
-    const handleNameChange = (event) => {
-        setFullName(event.target.value);
+    const handleChange = (event) => {
         const { name, value } = event.target;
-        onChange({ [name]: value });
-    };
-
-    const handleNumberChange = (event) => {
-        setPhoneNumber(event.target.value);
-        const { name, value } = event.target;
-        onChange({ [name]: value });
-    };
-
-    const handleEmailChange = (event) => {
-        setEmailAddress(event.target.value);
-        const { name, value } = event.target;
-        onChange({ [name]: value });
-    };
-
-    const handleAddressChange = (event) => {
-        setHomeAddress(event.target.value);
-        const { name, value } = event.target;
-        onChange({ [name]: value });
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
+        onChange({ ...formData, [name]: value });
     };
 
     return (
@@ -41,24 +23,24 @@ export default function PersonalDetailAccordion({ name, number, email, address, 
             <div className="accordian">
                 <div className="title" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '400px'}}>
                     <h2 style={{ marginRight: '10px' }}>Personal Details</h2>
-                    <span style={{ cursor: 'pointer' }} onClick={toggleAccordion}>{selected ? '-' : '+'}</span>
+                    <button style={{ cursor: 'pointer', width: '50px'}} onClick={toggleAccordion}>{selected ? '-' : '+'}</button>
                 </div>
                 <div className="accordian-content" style={{ maxHeight: selected && '400px'}}>
                     <div className="input-container">
                         <label htmlFor="fullName">Full Name</label>
-                        <input type="text" id="fullName" name="fullName" placeholder="First and last name" value={fullName} onChange={handleNameChange}/>
+                        <input type="text" id="fullName" name="fullName" placeholder="First and last name" value={formData.fullName} onChange={handleChange}/>
                     </div>
                     <div className="input-container">
                         <label htmlFor="phoneNumber">Phone number</label>
-                        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number" value={phoneNumber} onChange={handleNumberChange}/>
+                        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter phone number" value={formData.phoneNumber} onChange={handleChange}/>
                     </div>
                     <div className="input-container">
                         <label htmlFor="emailAddress">Email</label>
-                        <input type="text" id="emailAddress" name="emailAddress" placeholder="Enter email" value={emailAddress} onChange={handleEmailChange}/>
+                        <input type="text" id="emailAddress" name="emailAddress" placeholder="Enter email" value={formData.emailAddress} onChange={handleChange}/>
                     </div>
                     <div className="input-container">
                         <label htmlFor="homeAddress">Address</label>
-                        <input type="text" id="homeAddress" name="homeAddress" placeholder="Enter address" value={homeAddress} onChange={handleAddressChange}/>
+                        <input type="text" id="homeAddress" name="homeAddress" placeholder="Enter address" value={formData.homeAddress} onChange={handleChange}/>
                     </div>
                 </div>
             </div>
