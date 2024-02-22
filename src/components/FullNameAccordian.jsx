@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/PersonalDetailAccordian.css';
 
-export default function PersonalDetailAccordion({ name, number, email, address }) {
+export default function PersonalDetailAccordion({ name, number, email, address, onChange}) {
     const [selected, setSelected] = useState(true);
     const [fullName, setFullName] = useState(name);
     const [phoneNumber, setPhoneNumber] = useState(number);
@@ -14,18 +14,26 @@ export default function PersonalDetailAccordion({ name, number, email, address }
 
     const handleNameChange = (event) => {
         setFullName(event.target.value);
+        const { name, value } = event.target;
+        onChange({ [name]: value });
     };
 
     const handleNumberChange = (event) => {
         setPhoneNumber(event.target.value);
+        const { name, value } = event.target;
+        onChange({ [name]: value });
     };
 
     const handleEmailChange = (event) => {
         setEmailAddress(event.target.value);
+        const { name, value } = event.target;
+        onChange({ [name]: value });
     };
 
     const handleAddressChange = (event) => {
         setHomeAddress(event.target.value);
+        const { name, value } = event.target;
+        onChange({ [name]: value });
     };
 
     return (

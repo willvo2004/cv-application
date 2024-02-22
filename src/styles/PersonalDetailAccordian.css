@@ -8,7 +8,7 @@
     display: flex;
     justify-content: start; /* Align label to the left */
     margin-bottom: 5px;
-    margin-top: 4px;
+    margin-top: 4.5px;
 }
 
 .input-container input {
@@ -29,6 +29,7 @@
 .title {
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 10px;
 }
 
 .accordian {

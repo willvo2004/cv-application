@@ -23,6 +23,13 @@ export default function Master() {
         setAddress(address);
     }
 
+    const personalDetails = {
+        fullName: fullName,
+        phoneNumber: phoneNumber,
+        email: email,
+        address: address
+    }
+
     return (
         <div>
             {!fullNameSubmitted ? (
@@ -31,7 +38,7 @@ export default function Master() {
                 fullNameSubmitted && !additionalDetailsSubmitted ? (
                     <AdditionalDetails onSubmit={handleAdditionalDetailsSubmit} />
                 ) : (
-                    <FullEditor name={fullName} phoneNumber={phoneNumber} email={email} address={address} />
+                    <FullEditor header={personalDetails} />
                 )
             )}
         </div>

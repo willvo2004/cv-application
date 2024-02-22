@@ -1,10 +1,28 @@
 import FullNameAccordian from './FullNameAccordian';
+import ViewCV from './ViewCV';
+import '../styles/FullEditor.css';
+import { useState } from 'react';
 
-export default function FullEditor({ name, phoneNumber, email, address}) {
+export default function FullEditor({ header }) {
+    const [stateHeader, setStateHeader] = useState(header);
+
+    // Callback function to update stateHeader
+    const handleAccordianChange = (newValues) => {
+        setStateHeader(prevStateHeader => ({
+            ...prevStateHeader,
+            ...newValues
+        }));
+    }
+    
     return (
-        <>
-            <FullNameAccordian name={name} number={phoneNumber} email={email} address={address}/>   
-            <FullNameAccordian />
-        </>
+        <div className="main">
+            <div className="input-container">
+                {/* Pass handleAccordianChange as a prop */}
+                <FullNameAccordian onChange={handleAccordianChange} name={stateHeader.fullName} number={stateHeader.phoneNumber} email={stateHeader.email} address={stateHeader.address} />   
+            </div>
+            <div className="cv-viewer">
+                <ViewCV personalDetails={stateHeader}/>    
+            </div>  
+        </div>
     )
 }
