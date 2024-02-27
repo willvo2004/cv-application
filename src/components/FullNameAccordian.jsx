@@ -10,10 +10,10 @@ export default function PersonalDetailAccordion({ name, number, email, address, 
     };
 
     const handleChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value } = event.target; // name = name attribute of the input field, value = value of the input field
         setFormData(prevFormData => ({
             ...prevFormData,
-            [name]: value
+            [name]: value 
         }));
         onChange({ ...formData, [name]: value });
     };
